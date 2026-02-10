@@ -20,16 +20,15 @@ export default function App() {
       <div className="card header">
         <div className="headerTop">
           <div className="brandRow">
-  <div className="logo" aria-label="Kafe logosu">
-    
-    <img className="logoImg" src="/logo.png" alt="K" />
-  </div>
+            <div className="logo" aria-label="Kafe logosu">
+              <img className="logoImg" src="/logo.png" alt="K" />
+            </div>
 
-  <div>
-    <h1 className="title">Agora Kafe Menü</h1>
-    <div className="subtitle">Fiyatlar güncellenebilir • Stok durumu anlık</div>
-  </div>
-</div>
+            <div>
+              <h1 className="title">Agora Kafe Menü</h1>
+              <div className="subtitle">Fiyatlar güncellenebilir • Stok durumu anlık</div>
+            </div>
+          </div>
           <div className="badge">QR</div>
         </div>
       </div>
@@ -63,48 +62,70 @@ export default function App() {
       </div>
 
       <div className="section">
-        <div className="sectionTitleRow">
-          <div className="sectionTitle">{activeName}</div>
-        </div>
+        <div className="menuPanel">
+          <div className="sectionTitleRow">
+            <div className="sectionTitle">{activeName}</div>
+          </div>
 
-        <div className="list">
-          {filtered.length === 0 ? (
-            <div className="empty">Sonuç yok. Yazımı kontrol et veya farklı kategori seç.</div>
-          ) : (
-            filtered.map(item => (
-              <div key={item.id} className={`card item ${item.available ? "" : "dim"}`}>
-                <div className="itemRow">
- <div className="thumb">
-  {item.image ? (
-    <img
-  className="thumbImg"
-  src={item.image}
-  alt={item.name}
-  onError={(e) => { e.currentTarget.style.display = "none"; }}
-/>
-  ) : (<span className="thumbPlaceholder">☕</span>)}
-</div>
+          <div className="list">
+            {filtered.length === 0 ? (
+              <div className="empty">
+                <div className="emptyIcon">☕</div>
+                <div className="emptyTitle">Ürün bulunamadı</div>
+                <div className="emptyText">
+                  Yazımı kontrol edin ya da farklı bir kategori seçin.
+                </div>
+              </div>
+            ) : (
+              filtered.map(item => (
+                <div key={item.id} className={`card item ${item.available ? "" : "dim"}`}>
+                  <div className="itemRow">
+                    <div className="thumb">
+                      {item.image ? (
+                        <img
+                          className="thumbImg"
+                          src={item.image}
+                          alt={item.name}
+                          onError={(e) => { e.currentTarget.style.display = "none"; }}
+                        />
+                      ) : (
+                        <span className="thumbPlaceholder">☕</span>
+                      )}
+                    </div>
 
-  <div className="itemLeft">
+                    <div className="itemLeft">
+                      <div className="itemName">{item.name}</div>
+                      {item.description ? (
+                        <div className="itemDesc">{item.description}</div>
+                      ) : null}
+                    </div>
 
-                    <div className="itemName">{item.name}</div>
-                    {item.description ? <div className="itemDesc">{item.description}</div> : null}
-                  </div>
-                  <div className="itemRight">
-                    <div className="itemPrice">{item.price} ₺</div>
-                    <div className={`itemStatus ${item.available ? "" : "itemOut"}`}>
-                      {item.available ? "Mevcut" : "Stokta yok"}
+                    <div className="itemRight">
+                      <div className="itemPrice">{item.price} ₺</div>
+                      <div className={`itemStatus ${item.available ? "" : "itemOut"}`}>
+                        {item.available ? "Mevcut" : "Stokta yok"}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))
-          )}
+              ))
+            )}
+          </div>
         </div>
 
-        <div className="footer">
-          <div className="footerLine">Alerjen bilgisi için personele danışın.</div>
-        </div>
+       <div className="footer">
+  <div className="footerCols">
+    <div className="footerCol">
+      <div className="footerLine">Alerjen bilgisi için personele danışın.</div>
+      <div className="footerLine">Fiyatlar bilgilendirme amaçlıdır.</div>
+    </div>
+
+    <div className="footerCol footerRight">
+      <div className="footerLine">09:00 – 23:00</div>
+      <div className="footerLine">@agoracafe</div>
+    </div>
+  </div>
+</div>
       </div>
     </div>
   )
