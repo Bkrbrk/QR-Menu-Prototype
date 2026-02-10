@@ -26,7 +26,7 @@ export default function App() {
   </div>
 
   <div>
-    <h1 className="title">Dehşet Kafe Menü</h1>
+    <h1 className="title">Agora Kafe Menü</h1>
     <div className="subtitle">Fiyatlar güncellenebilir • Stok durumu anlık</div>
   </div>
 </div>
