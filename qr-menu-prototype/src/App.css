@@ -95,8 +95,11 @@ h1, h2, h3 { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Rob
   border:none;
   outline:none;
   background:transparent;
-  color: rgba(233,238,248,0.95);
+  color: var(--text);
   font-size: 14px;
+}
+.searchInput::placeholder{
+  color: rgba(16, 24, 40, 0.45);
 }
 
 /* Tabs */
