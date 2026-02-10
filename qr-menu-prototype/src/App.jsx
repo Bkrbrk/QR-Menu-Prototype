@@ -5,6 +5,7 @@ import "./App.css"
 export default function App() {
   const [activeCatId, setActiveCatId] = useState(categories[0]?.id ?? 1)
   const [q, setQ] = useState("")
+  const [showQR, setShowQR] = useState(false)
 
   const filtered = useMemo(() => {
     const query = q.trim().toLowerCase()
@@ -29,7 +30,7 @@ export default function App() {
               <div className="subtitle">Fiyatlar güncellenebilir • Stok durumu anlık</div>
             </div>
           </div>
-          <div className="badge">QR</div>
+          <div className="badge" onClick={() => setShowQR(true)}>QR</div>
         </div>
       </div>
 

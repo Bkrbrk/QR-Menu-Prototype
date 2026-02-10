@@ -360,3 +360,13 @@ h1, h2, h3 { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Rob
   }
 }
 
+.qrMini {
+  width: 56px;
+  height: 56px;
+  margin-left: auto;
+  border-radius: 8px;
+  background: #fff;
+  padding: 4px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
