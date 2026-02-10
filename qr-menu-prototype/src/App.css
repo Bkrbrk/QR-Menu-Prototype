@@ -129,8 +129,6 @@ h1, h2, h3 { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Rob
   box-shadow: 0 6px 18px rgba(47, 191, 181, 0.18);
 }
 
-
-
 /* Section */
 .section{
   margin-top: 14px;
@@ -208,10 +206,34 @@ h1, h2, h3 { font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Rob
 
 /* Empty + Footer */
 .empty{
-  background: var(--card);
-  border: 1px dashed var(--line);
+  padding: 28px 20px;
+  border-radius: 22px;
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.95),
+    rgba(240,255,245,0.95)
+  );
+  border: 1px solid rgba(16,24,40,0.08);
+  box-shadow: 0 8px 24px rgba(16,24,40,0.08);
+  text-align: center;
+}
+
+.emptyIcon{
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.emptyTitle{
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.emptyText{
+  font-size: 13px;
   color: var(--muted);
 }
+
 
 
 .footer{
