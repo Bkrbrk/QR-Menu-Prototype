@@ -1,19 +1,51 @@
-import { useMemo, useState } from "react"
-import { categories, items } from "./menu"
+import {  useEffect, useMemo, useState } from "react"
+import { categories} from "./menu"
 import "./App.css"
 
 export default function App() {
   const [activeCatId, setActiveCatId] = useState(categories[0]?.id ?? 1)
   const [q, setQ] = useState("")
+  const [items, setItems] = useState([])
+
+  const itemsNormalized = useMemo(() => {
+  const map = new Map(categories.map(c => [c.name, c.id]))
+  return items.map(i => ({
+    ...i,
+    categoryId: map.get(i.category) ?? -1
+  }))
+}, [items])
 
   const filtered = useMemo(() => {
     const query = q.trim().toLowerCase()
-    const catItems = items.filter(i => i.categoryId === activeCatId)
+    const catItems = itemsNormalized.filter(i => i.categoryId === activeCatId)
     if (!query) return catItems
     return catItems.filter(i => i.name.toLowerCase().includes(query))
-  }, [activeCatId, q])
+  }, [activeCatId, q, itemsNormalized])
 
   const activeName = categories.find(c => c.id === activeCatId)?.name ?? "Menü"
+  const API_URL = "https://script.google.com/macros/s/AKfycbwuynsAzXVJzm7M6LBzYrJMv2khWW-5hVY9YHCNeXvJ3Pk6scV16lmjNxX7aIEq7Ue0Bw/exec"
+
+useEffect(() => {
+  let cancelled = false
+
+  fetch(API_URL)
+    .then((r) => r.json())
+    .then((data) => {
+      if (cancelled) return
+      if (data?.ok && Array.isArray(data.items)) {
+        setItems(data.items)
+      } else {
+        setItems([])
+      }
+    })
+    .catch(() => {
+      if (cancelled) return
+      setItems([])
+    })
+
+  return () => { cancelled = true }
+}, [])
+
 
   return (
     <div className="container">

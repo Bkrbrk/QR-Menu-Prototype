@@ -1,3 +1,4 @@
+
 export const categories = [
   { id: 1, name: "Sıcak İçecekler" },
   { id: 2, name: "Soğuk İçecekler" },
